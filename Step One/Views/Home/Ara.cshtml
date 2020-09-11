@@ -1,0 +1,14 @@
+﻿@model Kutuphane.Models.Entity.kategoriler
+@{
+    ViewBag.Title = "Ara";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="get">
+
+    <fieldset>
+        Kategori Seç
+        @Html.DropDownListFor(m=>m.kategori_ad,(List<SelectListItem>)ViewBag.dgr, new {@class="form-control"})
+    </fieldset>
+
+</form>
