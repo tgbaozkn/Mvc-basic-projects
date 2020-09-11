@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Kutuphane.Models.Entity.library>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="tbl1" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.kategoriler.kategori_ad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.kaynak.kaynak_ad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.yayınevi.yayınevi_ad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.yazarlar.yazar_ad)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.kategoriler.kategori_ad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kaynak.kaynak_ad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.yayınevi.yayınevi_ad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.yazarlar.yazar_ad)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.library_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.library_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.library_id })
+            </td>
+        </tr>
+    }
+
+</table>
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+<script>
+    $('#tbl1').dataTable({});
+</script>
