@@ -1,0 +1,33 @@
+﻿@model Kutuphane.Models.Entity.kaynak
+@{
+    ViewBag.Title = "YeniKaynak";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Yeni Kaynak-Kitap</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            <label> Kaynak-Kitap Adı </label>
+
+            <br />
+            @Html.TextBoxFor(m => m.kaynak_ad, new { @class ="form-control"})
+                @*<input class="form-control" name="kaynak" type="text" />*@
+             @Html.ValidationMessageFor(m => m.kaynak_ad, "",new{@style = "color:pink" })
+                <br />
+            
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn-default" id="btn1" onclick="alert('Eklendi');"> Ekle</button>
+            </div>
+            
+        </div>
+    </div>
+}
+<div>
+    @Html.ActionLink("Back to List", "KategoriList")
+</div>

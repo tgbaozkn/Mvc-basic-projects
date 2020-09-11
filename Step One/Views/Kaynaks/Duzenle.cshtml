@@ -1,0 +1,31 @@
+﻿@model Kutuphane.Models.Entity.kaynak
+@{
+    ViewBag.Title = "Duzenle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Duzenle</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="form-group">
+        <h3>Kaynak Adını Duzenle</h3>
+        <br />
+        <input type="text" class="form-control" name="ad"  />
+        </div>
+        <div class="form-group">
+        <br />
+        <hr />
+        <input class="btn btn-danger" type="submit" value="Kaydet" />
+            </div>
+    </div>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+
+

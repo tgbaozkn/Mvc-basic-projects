@@ -1,0 +1,47 @@
+﻿@using Kutuphane.Models.Entity
+@model List<kaynak>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kitaplar</h2>
+<br/>
+@using (Html.BeginForm("Index", "Kaynaks", FormMethod.Get))
+{
+    <b>Aranacak Kaynak : @Html.TextBox("k")</b>
+    <input type="submit" value="Ara"/>
+}
+<br/>
+
+<a href="/Kaynaks/YeniKaynak" class="btn btn-danger"> Yeni Kitap Ekle </a> <br /> <hr />
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            Kaynak ID
+        </th>
+        <th>
+            Kaynak Adı
+        </th>
+    </tr>
+    <tbody>
+        @foreach (var kaynak in Model)
+        {
+            <tr>
+                <td>
+                    @kaynak.kaynak_id
+                </td>
+                <td>
+                    @kaynak.kaynak_ad
+                </td>
+                <td>
+                    <a href="/Kaynaks/Sil/@kaynak.kaynak_id" class="btn btn-default" >Sil</a>
+                    <a href="/Kaynaks/Duzenle/@kaynak.kaynak_id" class="btn btn-success">Duzenle</a>
+                </td>
+            </tr>
+            }
+    </tbody>
+    
+</table>
+
