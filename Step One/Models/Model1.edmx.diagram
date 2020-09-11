@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0ec9c397d7d849e0a5eb9d0ebdba0303" Name="Diagram1">
+        <EntityTypeShape EntityType="KutuphaneModel.kategoriler" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KutuphaneModel.kaynak" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KutuphaneModel.library" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="KutuphaneModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KutuphaneModel.yayınevi" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="KutuphaneModel.yazarlar" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <AssociationConnector Association="KutuphaneModel.FK_Kutuphane_kategoriler" ManuallyRouted="false" />
+        <AssociationConnector Association="KutuphaneModel.FK_Kutuphane_kaynak" ManuallyRouted="false" />
+        <AssociationConnector Association="KutuphaneModel.FK_Kutuphane_yayınevi" ManuallyRouted="false" />
+        <AssociationConnector Association="KutuphaneModel.FK_Kutuphane_yazarlar" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

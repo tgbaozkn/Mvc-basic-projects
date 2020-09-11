@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KutuphaneModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="kategoriler">
+          <Key>
+            <PropertyRef Name="kategori_id" />
+          </Key>
+          <Property Name="kategori_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategori_ad" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="kaynak">
+          <Key>
+            <PropertyRef Name="kaynak_id" />
+          </Key>
+          <Property Name="kaynak_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kaynak_ad" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="library">
+          <Key>
+            <PropertyRef Name="library_id" />
+          </Key>
+          <Property Name="library_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="yazar_id" Type="int" />
+          <Property Name="yayinevi_id" Type="int" />
+          <Property Name="kategori_id" Type="int" />
+          <Property Name="kaynak_id" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="yayınevi">
+          <Key>
+            <PropertyRef Name="yayınevi_id" />
+          </Key>
+          <Property Name="yayınevi_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="yayınevi_ad" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="yazarlar">
+          <Key>
+            <PropertyRef Name="yazar_id" />
+          </Key>
+          <Property Name="yazar_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="yazar_ad" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_Kutuphane_kategoriler">
+          <End Role="kategoriler" Type="Self.kategoriler" Multiplicity="0..1" />
+          <End Role="library" Type="Self.library" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kategoriler">
+              <PropertyRef Name="kategori_id" />
+            </Principal>
+            <Dependent Role="library">
+              <PropertyRef Name="kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kutuphane_kaynak">
+          <End Role="kaynak" Type="Self.kaynak" Multiplicity="0..1" />
+          <End Role="library" Type="Self.library" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kaynak">
+              <PropertyRef Name="kaynak_id" />
+            </Principal>
+            <Dependent Role="library">
+              <PropertyRef Name="kaynak_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kutuphane_yayınevi">
+          <End Role="yayınevi" Type="Self.yayınevi" Multiplicity="0..1" />
+          <End Role="library" Type="Self.library" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="yayınevi">
+              <PropertyRef Name="yayınevi_id" />
+            </Principal>
+            <Dependent Role="library">
+              <PropertyRef Name="yayinevi_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kutuphane_yazarlar">
+          <End Role="yazarlar" Type="Self.yazarlar" Multiplicity="0..1" />
+          <End Role="library" Type="Self.library" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="yazarlar">
+              <PropertyRef Name="yazar_id" />
+            </Principal>
+            <Dependent Role="library">
+              <PropertyRef Name="yazar_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KutuphaneModelStoreContainer">
+          <EntitySet Name="kategoriler" EntityType="Self.kategoriler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kaynak" EntityType="Self.kaynak" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="library" EntityType="Self.library" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="yayınevi" EntityType="Self.yayınevi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="yazarlar" EntityType="Self.yazarlar" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Kutuphane_kategoriler" Association="Self.FK_Kutuphane_kategoriler">
+            <End Role="kategoriler" EntitySet="kategoriler" />
+            <End Role="library" EntitySet="library" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kutuphane_kaynak" Association="Self.FK_Kutuphane_kaynak">
+            <End Role="kaynak" EntitySet="kaynak" />
+            <End Role="library" EntitySet="library" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kutuphane_yayınevi" Association="Self.FK_Kutuphane_yayınevi">
+            <End Role="yayınevi" EntitySet="yayınevi" />
+            <End Role="library" EntitySet="library" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kutuphane_yazarlar" Association="Self.FK_Kutuphane_yazarlar">
+            <End Role="yazarlar" EntitySet="yazarlar" />
+            <End Role="library" EntitySet="library" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KutuphaneModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="kategoriler">
+          <Key>
+            <PropertyRef Name="kategori_id" />
+          </Key>
+          <Property Name="kategori_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategori_ad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="library" Relationship="Self.FK_Kutuphane_kategoriler" FromRole="kategoriler" ToRole="library" />
+        </EntityType>
+        <EntityType Name="kaynak">
+          <Key>
+            <PropertyRef Name="kaynak_id" />
+          </Key>
+          <Property Name="kaynak_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kaynak_ad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="library" Relationship="Self.FK_Kutuphane_kaynak" FromRole="kaynak" ToRole="library" />
+        </EntityType>
+        <EntityType Name="library">
+          <Key>
+            <PropertyRef Name="library_id" />
+          </Key>
+          <Property Name="library_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="yazar_id" Type="Int32" />
+          <Property Name="yayinevi_id" Type="Int32" />
+          <Property Name="kategori_id" Type="Int32" />
+          <Property Name="kaynak_id" Type="Int32" />
+          <NavigationProperty Name="kategoriler" Relationship="Self.FK_Kutuphane_kategoriler" FromRole="library" ToRole="kategoriler" />
+          <NavigationProperty Name="kaynak" Relationship="Self.FK_Kutuphane_kaynak" FromRole="library" ToRole="kaynak" />
+          <NavigationProperty Name="yayınevi" Relationship="Self.FK_Kutuphane_yayınevi" FromRole="library" ToRole="yayınevi" />
+          <NavigationProperty Name="yazarlar" Relationship="Self.FK_Kutuphane_yazarlar" FromRole="library" ToRole="yazarlar" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="yayınevi">
+          <Key>
+            <PropertyRef Name="yayınevi_id" />
+          </Key>
+          <Property Name="yayınevi_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="yayınevi_ad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="library" Relationship="Self.FK_Kutuphane_yayınevi" FromRole="yayınevi" ToRole="library" />
+        </EntityType>
+        <EntityType Name="yazarlar">
+          <Key>
+            <PropertyRef Name="yazar_id" />
+          </Key>
+          <Property Name="yazar_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="yazar_ad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="library" Relationship="Self.FK_Kutuphane_yazarlar" FromRole="yazarlar" ToRole="library" />
+        </EntityType>
+        <Association Name="FK_Kutuphane_kategoriler">
+          <End Role="kategoriler" Type="Self.kategoriler" Multiplicity="0..1" />
+          <End Role="library" Type="Self.library" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kategoriler">
+              <PropertyRef Name="kategori_id" />
+            </Principal>
+            <Dependent Role="library">
+              <PropertyRef Name="kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kutuphane_kaynak">
+          <End Role="kaynak" Type="Self.kaynak" Multiplicity="0..1" />
+          <End Role="library" Type="Self.library" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kaynak">
+              <PropertyRef Name="kaynak_id" />
+            </Principal>
+            <Dependent Role="library">
+              <PropertyRef Name="kaynak_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kutuphane_yayınevi">
+          <End Role="yayınevi" Type="Self.yayınevi" Multiplicity="0..1" />
+          <End Role="library" Type="Self.library" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="yayınevi">
+              <PropertyRef Name="yayınevi_id" />
+            </Principal>
+            <Dependent Role="library">
+              <PropertyRef Name="yayinevi_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kutuphane_yazarlar">
+          <End Role="yazarlar" Type="Self.yazarlar" Multiplicity="0..1" />
+          <End Role="library" Type="Self.library" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="yazarlar">
+              <PropertyRef Name="yazar_id" />
+            </Principal>
+            <Dependent Role="library">
+              <PropertyRef Name="yazar_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KutuphaneEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="kategoriler" EntityType="Self.kategoriler" />
+          <EntitySet Name="kaynak" EntityType="Self.kaynak" />
+          <EntitySet Name="library" EntityType="Self.library" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="yayınevi" EntityType="Self.yayınevi" />
+          <EntitySet Name="yazarlar" EntityType="Self.yazarlar" />
+          <AssociationSet Name="FK_Kutuphane_kategoriler" Association="Self.FK_Kutuphane_kategoriler">
+            <End Role="kategoriler" EntitySet="kategoriler" />
+            <End Role="library" EntitySet="library" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kutuphane_kaynak" Association="Self.FK_Kutuphane_kaynak">
+            <End Role="kaynak" EntitySet="kaynak" />
+            <End Role="library" EntitySet="library" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kutuphane_yayınevi" Association="Self.FK_Kutuphane_yayınevi">
+            <End Role="yayınevi" EntitySet="yayınevi" />
+            <End Role="library" EntitySet="library" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kutuphane_yazarlar" Association="Self.FK_Kutuphane_yazarlar">
+            <End Role="yazarlar" EntitySet="yazarlar" />
+            <End Role="library" EntitySet="library" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KutuphaneModelStoreContainer" CdmEntityContainer="KutuphaneEntities">
+          <EntitySetMapping Name="kategoriler">
+            <EntityTypeMapping TypeName="KutuphaneModel.kategoriler">
+              <MappingFragment StoreEntitySet="kategoriler">
+                <ScalarProperty Name="kategori_id" ColumnName="kategori_id" />
+                <ScalarProperty Name="kategori_ad" ColumnName="kategori_ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kaynak">
+            <EntityTypeMapping TypeName="KutuphaneModel.kaynak">
+              <MappingFragment StoreEntitySet="kaynak">
+                <ScalarProperty Name="kaynak_id" ColumnName="kaynak_id" />
+                <ScalarProperty Name="kaynak_ad" ColumnName="kaynak_ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="library">
+            <EntityTypeMapping TypeName="KutuphaneModel.library">
+              <MappingFragment StoreEntitySet="library">
+                <ScalarProperty Name="library_id" ColumnName="library_id" />
+                <ScalarProperty Name="yazar_id" ColumnName="yazar_id" />
+                <ScalarProperty Name="yayinevi_id" ColumnName="yayinevi_id" />
+                <ScalarProperty Name="kategori_id" ColumnName="kategori_id" />
+                <ScalarProperty Name="kaynak_id" ColumnName="kaynak_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="KutuphaneModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yayınevi">
+            <EntityTypeMapping TypeName="KutuphaneModel.yayınevi">
+              <MappingFragment StoreEntitySet="yayınevi">
+                <ScalarProperty Name="yayınevi_id" ColumnName="yayınevi_id" />
+                <ScalarProperty Name="yayınevi_ad" ColumnName="yayınevi_ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yazarlar">
+            <EntityTypeMapping TypeName="KutuphaneModel.yazarlar">
+              <MappingFragment StoreEntitySet="yazarlar">
+                <ScalarProperty Name="yazar_id" ColumnName="yazar_id" />
+                <ScalarProperty Name="yazar_ad" ColumnName="yazar_ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
