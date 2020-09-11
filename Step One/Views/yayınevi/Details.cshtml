@@ -1,0 +1,27 @@
+﻿@model Kutuphane.Models.Entity.yayınevi
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>yayınevi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.yayınevi_ad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.yayınevi_ad)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.yayınevi_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
