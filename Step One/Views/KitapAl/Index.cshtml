@@ -1,0 +1,41 @@
+﻿@using Kutuphane.Models.Entity
+@model List<kaynak>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<hr />
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modal1">
+    Kitap Kirala
+</button>
+<hr />
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div style="text-align:end">
+                <button type="button" style="text-align:end" data-dismiss="modal"> 
+                    X
+                </button>
+            </div>
+            <div class="modal-header">
+                Kitap Kiralama
+            </div>
+            <p style="text-align:center;margin-top:40px;color:blueviolet;font-weight:bold;margin-bottom:50px"> Kiralamak İstediğiniz Kitabı Seçiniz</p>
+            <div class="modal-body">
+
+                @foreach (var kaynak in Model)
+                {<div style="text-align:center">
+                        <button style="text-align:center;color:rebeccapurple;background-color:antiquewhite;font-weight:bold" onclick="return confirm('Emin misin?')">@kaynak.kaynak_ad </button>
+                    </div>
+                    <hr />
+
+
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
